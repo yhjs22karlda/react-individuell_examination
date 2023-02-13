@@ -1,34 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import bitcoin_logo from './assets/bitcoin_logo.svg'
+import ninja_logo from './assets/ninja_logo.svg'
+import blockchain_logo from './assets/blockchain_logo.svg'
+import evilcorp_logo from './assets/evilcorp_logo.svg'
+import chip from './assets/chip.svg'
+import wifi_logo from './assets/wifi_logo.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="app">
+      <img src={bitcoin_logo} />
+      <img src={ninja_logo} />
+      <img src={blockchain_logo} />
+      <img src={evilcorp_logo} />
+      <img src={chip} />
+      <img src={wifi_logo} />
     </div>
   )
 }
 
-export default App
