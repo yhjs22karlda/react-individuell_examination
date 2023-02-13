@@ -1,0 +1,42 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 94%;
+    margin-top: 1.4rem;
+}
+
+.half-label {
+    display: flex;
+}
+
+.half-label label:first-child {
+    margin-right: 1rem;
+}
+
+.half-label label:last-child {
+    margin-left: 1rem;
+}
+
+.half-label input {
+    width: 100%;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    color: #000000b0;
+    font-size: 12px;
+    margin-top: 1rem;
+}
+
+.form input, form select {
+    padding: 1rem;
+    border: 1px solid #000000b0;
+    border-radius: 8px;
+    margin-top: .2rem;
+    font-size: 18px;
+}
+
+.form input::placeholder {
+    color: black;
+}

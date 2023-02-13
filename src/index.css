@@ -1,8 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: gray;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font: 400 12px 'PT Mono', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #eee;
+    color: #222;
+}
+
+h1 {
+    font: 700 35px/35px 'Source Sans Pro', sans-serif;
+    max-width: 60%;
+    text-align: center;
+    margin: 1.6rem 0;
+}
+
+h5 {
+    font: 600 12px/15px 'Source Sans Pro', sans-serif;
+    margin: 0;
+    color: #22222299;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+#root {
+    width: 414px;
 }

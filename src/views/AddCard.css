@@ -1,0 +1,24 @@
+.add-card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-card a {
+    width: 94%;
+}
+
+.add-card button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 22px;
+    font-family: inherit;
+    padding: 1.4rem;
+    width: 100%;
+    margin: 2rem 0 1rem;
+    cursor: pointer;
+}
