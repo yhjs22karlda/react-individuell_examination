@@ -11,6 +11,17 @@
     margin-top: auto;
 }
 
+.home .empty {
+    width: 94%;
+    aspect-ratio: 1.8;
+    background-color: #d0d0d0;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+}
+
 .home button {
     background-color: white;
     color: black;
