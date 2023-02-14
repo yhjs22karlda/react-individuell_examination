@@ -1,8 +1,8 @@
 import "./AddCard.css"
-import {dummyCard} from "../assets/utils"
 import Top from "../components/Top"
 import Card from "../components/Card"
 import CardForm from "../components/CardForm"
+import {dummyCard} from "../assets/utils"
 import {useState} from "react"
 import {Link} from "react-router-dom"
 
@@ -16,10 +16,10 @@ export default function AddCard() {
             </Link>
             <Top text="ADD A NEW BANK CARD" />
             <h5>NEW CARD</h5>
-            <Card data={dummyCard} />
+            <Card data={dummyCard} onClick={()=>{}}/>
             {message && 
                 <div className="message">
-                    <div>{message}</div>
+                    {message.map(m => <div key={m}>{m}</div>)}
                 </div>
             }
             <CardForm setMessage={setMessage}/>

@@ -1,9 +1,9 @@
 import "./Card.css"
-import {getCardDetails} from "../assets/utils"
+import {getVendorDetails} from "../assets/utils"
 
-export default function Card({data}) {
-    const cardDetails = getCardDetails(data.vendor)
-    const dummy = data.number === "XXXX XXXX XXXX XXXX"
+export default function Card({data, onClick}) {
+    const vendorDetails = getVendorDetails(data.vendor)
+    const dummy = data.number === "XXXXXXXXXXXXXXXX"
     let styles = {}
     let chiplogo = "/chip_logo.svg"
 
@@ -15,22 +15,22 @@ export default function Card({data}) {
         }
     } else {
         styles = {
-            backgroundColor: cardDetails.bgColor,
-            color: cardDetails.color
+            backgroundColor: vendorDetails.bgColor,
+            color: vendorDetails.color
         }
     }
 
     return (
-        <section className="card" style={styles}>
+        <section className="card" style={styles} onClick={() =>onClick(data.number)}>
             <section className="card__icons">
-                <img src={cardDetails.wifi} alt="wifilogo" />
-                {!dummy && <img src={cardDetails.logo} alt="banklogo" />}
+                <img src={vendorDetails.wifi} alt="wifilogo" />
+                {!dummy && <img src={vendorDetails.logo} alt="banklogo" />}
             </section>
             <section className="card__chip">
                 <img src={chiplogo} alt="chip" />
             </section>
             <section className="card__number">
-                {data.number}
+                {data.number.match(/.{4}/g).join(" ")}
             </section>
             <section className="card__text">
                 <p>CARDHOLDER NAME</p>

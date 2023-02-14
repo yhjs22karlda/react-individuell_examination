@@ -1,5 +1,5 @@
 export const dummyCard = {
-    number: "XXXX XXXX XXXX XXXX",
+    number: "XXXXXXXXXXXXXXXX",
     name: "FIRSTNAME LASTNAME",
     valid: "MM/YY",
     ccv: "",
@@ -7,10 +7,35 @@ export const dummyCard = {
 }
 
 export function validateForm(form) {
-    return true
+    const messages = []
+    const numberFormat = /^\d{16}$/
+    const validThruFormat = /(^0[1-9]\/\d\d$)|(^1[0-2]\/\d\d$)/
+    const ccvFormat = /^\d\d\d$/
+
+    if(!numberFormat.test(form.number)) {
+        messages.push("Card number should be 16 digits")
+    }
+    if(form.name.length > 22 || form.name.length < 3) {
+        messages.push("Name should be 2 to 22 characters")
+    }
+    if(!validThruFormat.test(form.valid)) {
+        messages.push("Valid Thru format is: MM/YY")
+    }
+    if(!ccvFormat.test(form.ccv)) {
+        messages.push("CCV should be 3 digits")
+    }
+    if(form.vendor === "") {
+        messages.push("You must choose a vendor")
+    }
+
+    if(messages.length > 0) {
+        return messages
+    } else {
+        return true
+    }
 }
 
-export function getCardDetails(bank) {
+export function getVendorDetails(bank) {
     switch(bank) {
         case "Bitcoin Inc":
             return {bgColor: "#ffae34",

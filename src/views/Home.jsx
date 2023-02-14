@@ -2,10 +2,10 @@ import "./Home.css"
 import Top from "../components/Top"
 import Card from "../components/Card"
 import CardStack from "../components/CardStack"
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import {Link} from "react-router-dom"
 
-// TODO validation function, CardStack, remove card
+// TODO CardStack, remove card
 
 if(!localStorage.cards) {
     localStorage.cards = "[]"
@@ -16,20 +16,31 @@ if(!localStorage.active) {
 
 export default function Home() {
     const cards = JSON.parse(localStorage.cards)
-    const activeCard = JSON.parse(localStorage.active)
-    console.log(cards)
+    const [activeCardIndex, setActiveCardIndex] = useState(
+        JSON.parse(localStorage.active))
+    const unActiveCards = cards.filter((card, i) => i !== Number(activeCardIndex))
+
+    function handleClick(nr) {
+        for(let i = 0; i < cards.length; i++) {
+            if(cards[i].number === nr) {
+                localStorage.active = i
+                setActiveCardIndex(localStorage.active) // trigger rerender
+                break
+            }
+        }
+    }
 
     return (
         <div className="home">
             <Top text="E-WALLET" />
             {localStorage.cards === "[]"
              ? <article className="empty">
-                   No added cards!
+                   No active card!
                </article>
              : <>
                  <h5>ACTIVE CARD</h5>
-                 <Card data={cards[activeCard]} />
-                 <CardStack />
+                 <Card data={cards[activeCardIndex]} onClick={()=>{}}/>
+                 <CardStack cards={unActiveCards} onClick={handleClick}/>
                </>
             }
             <Link to="/addcard">

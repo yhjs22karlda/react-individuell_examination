@@ -25,7 +25,7 @@ export default function CardForm({setMessage}) {
         let cards = JSON.parse(localStorage.cards)
         if(cards.length > 0) {
             if(cards.some(card => card.number === formData.number)) {
-                setMessage("A card with same number already added")
+                setMessage(<div>A card with same number already added</div>)
                 return
             }
         }
