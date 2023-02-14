@@ -1,5 +1,5 @@
 import "./Card.css"
-import {getVendorDetails} from "../assets/utils"
+import {getVendorDetails, handlePointerEnter, handlePointerLeave} from "../assets/utils"
 
 export default function Card({data, onClick}) {
     const vendorDetails = getVendorDetails(data.vendor)
@@ -16,12 +16,16 @@ export default function Card({data, onClick}) {
     } else {
         styles = {
             backgroundColor: vendorDetails.bgColor,
-            color: vendorDetails.color
+            color: vendorDetails.color,
         }
     }
 
     return (
-        <section className="card" style={styles} onClick={() =>onClick(data.number)}>
+        <section className="card" style={styles}
+            onClick={() =>onClick(data.number)}
+            onPointerEnter={handlePointerEnter}
+            onPointerLeave={handlePointerLeave}
+        >
             <section className="card__icons">
                 <img src={vendorDetails.wifi} alt="wifilogo" />
                 {!dummy && <img src={vendorDetails.logo} alt="banklogo" />}

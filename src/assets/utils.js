@@ -60,3 +60,15 @@ export function getVendorDetails(bank) {
             console.log("Hit borde man inte komma");
     }
 }
+
+export function handlePointerEnter(e) {
+    if(e.currentTarget.parentElement.className === "cardstack") {
+        e.currentTarget.style.transform = "rotate(0deg) translateY(-20px) scale(1)"
+    }
+}
+
+export function handlePointerLeave(e) {
+    if(e.currentTarget.parentElement.className === "cardstack") {
+        e.currentTarget.style.transform = "rotate(0deg)"
+    }
+}

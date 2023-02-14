@@ -23,20 +23,20 @@ export default function CardForm({setMessage}) {
     function handleSubmit(e) {
         e.preventDefault();
         let cards = JSON.parse(localStorage.cards)
-        if(cards.length > 0) {
+        if(cards.length > 0) { // endast 1 kort med samma nummer tillåtet
             if(cards.some(card => card.number === formData.number)) {
-                setMessage(<div>A card with same number already added</div>)
+                setMessage(["A card with same number already added"])
                 return
             }
         }
         let validated = validateForm(formData)
-        if(validated !== true) {
+        if(validated !== true) { // kortet måste klara valideringen
             setMessage(validated)
             return
         }
         cards.push(formData)
         localStorage.cards = JSON.stringify(cards)
-        if(localStorage.active === "-1") localStorage.active = "0"
+        // if(localStorage.active === "-1") localStorage.active = "0"
         navigate("/")
     }
 

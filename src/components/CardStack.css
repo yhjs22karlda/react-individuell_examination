@@ -3,20 +3,21 @@
     margin-top: 1rem;
 }
 
-
 .cardstack > section {
     cursor: pointer;
+    position: relative;
 }
 
 .cardstack > section:nth-child(2) {
-    transform: translateY(-200px);
+    translate: 0 -195px;
+    opacity: .95;
 }
 .cardstack > section:nth-child(3) {
-    transform: translateY(-400px);
+    translate: 0 -390px;
 }
 .cardstack > section:nth-child(4) {
-    transform: translateY(-600px);
+    translate: 0 -585px;
 }
 .cardstack > section:nth-child(5) {
-    transform: translateY(-800px);
+    translate: 0 -780px;
 }

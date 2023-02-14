@@ -9,6 +9,7 @@ import {Link} from "react-router-dom"
 
 export default function AddCard() {
     const [message, setMessage] = useState()
+
     return (
         <article className="add-card">
             <Link to="/" className="go-back">
