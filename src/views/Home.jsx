@@ -5,13 +5,13 @@ import CardStack from "../components/CardStack"
 import {useState} from "react"
 import {Link} from "react-router-dom"
 
-// TODO CardStack, remove card
+// TODO remove card
 
 if(!localStorage.cards) {
     localStorage.cards = "[]"
 }
 if(!localStorage.active) {
-    localStorage.active = "0"
+    localStorage.active = "-1"
 }
 
 export default function Home() {
@@ -19,6 +19,7 @@ export default function Home() {
     const [activeCardIndex, setActiveCardIndex] = useState(
         JSON.parse(localStorage.active))
     const unActiveCards = cards.filter((card, i) => i !== Number(activeCardIndex))
+    console.log(cards,activeCardIndex, unActiveCards);
 
     function handleClick(nr) {
         for(let i = 0; i < cards.length; i++) {
@@ -30,22 +31,47 @@ export default function Home() {
         }
     }
 
+    function handleRemove() {
+        if(activeCardIndex !== "-1") {
+            console.log(localStorage.active,activeCardIndex);
+            cards.splice(activeCardIndex,1)
+            console.log(cards);
+            localStorage.cards = JSON.stringify(cards)
+            localStorage.active = "-1"
+            setActiveCardIndex(-1);
+        }
+    }
+
     return (
         <div className="home">
             <Top text="E-WALLET" />
             {localStorage.cards === "[]"
-             ? <article className="empty">
-                   No active card!
-               </article>
+             ? <NoActiveCard />
              : <>
                  <h5>ACTIVE CARD</h5>
-                 <Card data={cards[activeCardIndex]} onClick={()=>{}}/>
+                 {activeCardIndex >=0 ?
+                    <Card data={cards[activeCardIndex]} onClick={()=>{}}/>:
+                    <NoActiveCard />
+                 }
+                 {activeCardIndex >= 0 && <button onClick={handleRemove}>remove card</button>}
                  <CardStack cards={unActiveCards} onClick={handleClick}/>
                </>
             }
             <Link to="/addcard">
-                <button>ADD A NEW CARD</button>
+                <button className="button" disabled={cards.length >= 5}>
+                    {cards.length < 5 ?
+                    'ADD A NEW CARD':
+                    'MAX 5 CARDS'}
+                </button>
             </Link>
         </div>
+    )
+}
+
+function NoActiveCard() {
+    return (
+        <article className="empty">
+            No active card!
+        </article>
     )
 }

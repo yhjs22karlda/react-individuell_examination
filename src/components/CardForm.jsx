@@ -36,6 +36,7 @@ export default function CardForm({setMessage}) {
         }
         cards.push(formData)
         localStorage.cards = JSON.stringify(cards)
+        if(localStorage.active === "-1") localStorage.active = "0"
         navigate("/")
     }
 

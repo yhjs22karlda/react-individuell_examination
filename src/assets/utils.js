@@ -15,7 +15,7 @@ export function validateForm(form) {
     if(!numberFormat.test(form.number)) {
         messages.push("Card number should be 16 digits")
     }
-    if(form.name.length > 22 || form.name.length < 3) {
+    if(form.name.length > 22 || form.name.length < 2) {
         messages.push("Name should be 2 to 22 characters")
     }
     if(!validThruFormat.test(form.valid)) {
@@ -27,7 +27,6 @@ export function validateForm(form) {
     if(form.vendor === "") {
         messages.push("You must choose a vendor")
     }
-
     if(messages.length > 0) {
         return messages
     } else {

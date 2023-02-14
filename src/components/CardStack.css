@@ -2,3 +2,21 @@
     min-height: 225px;
     margin-top: 1rem;
 }
+
+
+.cardstack > section {
+    cursor: pointer;
+}
+
+.cardstack > section:nth-child(2) {
+    transform: translateY(-200px);
+}
+.cardstack > section:nth-child(3) {
+    transform: translateY(-400px);
+}
+.cardstack > section:nth-child(4) {
+    transform: translateY(-600px);
+}
+.cardstack > section:nth-child(5) {
+    transform: translateY(-800px);
+}
