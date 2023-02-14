@@ -1,11 +1,14 @@
 import "./Card.css"
+import {getCardDetails} from "../assets/utils"
 
 export default function Card({data}) {
     const cardDetails = getCardDetails(data.vendor)
     const dummy = data.number === "XXXX XXXX XXXX XXXX"
     let styles = {}
+    let chiplogo = "/chip_logo.svg"
 
     if(dummy) {
+        chiplogo = "/chip-dark_logo.svg"
         styles = {
             backgroundColor: "#d0d0d0",
             color: "black"
@@ -24,7 +27,7 @@ export default function Card({data}) {
                 {!dummy && <img src={cardDetails.logo} alt="banklogo" />}
             </section>
             <section className="card__chip">
-                <img src={cardDetails.chip} alt="chip" />
+                <img src={chiplogo} alt="chip" />
             </section>
             <section className="card__number">
                 {data.number}
@@ -39,35 +42,4 @@ export default function Card({data}) {
             </section>
         </section>
     )
-}
-
-function getCardDetails(bank) {
-    switch(bank) {
-        case "Bitcoin Inc":
-            return {bgColor: "#ffae34",
-                    color: "black",
-                    wifi: "/wifi_logo.svg",
-                    chip: "/chip-dark_logo.svg",
-                    logo: "/bitcoin_logo.svg"}
-        case "Ninja Bank":
-            return {bgColor: "#222222",
-                    color: "white",
-                    wifi: "wifi-light_logo.svg",
-                    chip: "/chip_logo.svg",
-                    logo: "/ninja_logo.svg"}
-        case "Block Chain Inc":
-            return {bgColor: "#8b58f9",
-                    color: "white",
-                    wifi: "wifi-light_logo.svg",
-                    chip: "/chip_logo.svg",
-                    logo: "/blockchain_logo.svg"}
-        case "Evil Corp":
-            return {bgColor: "#f33355",
-                    color: "white",
-                    wifi: "wifi-light_logo.svg",
-                    chip: "/chip_logo.svg",
-                    logo: "/evilcorp_logo.svg"}
-        default:
-            console.log("Hit borde man inte komma");
-    }
 }

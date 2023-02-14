@@ -1,18 +1,16 @@
 import "./CardForm.css"
+import {validateForm} from "../assets/utils.js"
 import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 
-export const initialFormData = {
-    number: "",
-    name: "",
-    valid: "",
-    ccv: "",
-    vendor: ""
-}
-
 export default function CardForm({setMessage}) {
-    const [formData, setFormData] = useState(initialFormData)
-
+    const [formData, setFormData] = useState({
+        number: "",
+        name: "",
+        valid: "",
+        ccv: "",
+        vendor: ""
+    })
     const navigate = useNavigate()
 
     function handleFormData(e) {
@@ -33,12 +31,11 @@ export default function CardForm({setMessage}) {
         }
         let validated = validateForm(formData)
         if(validated !== true) {
-            setMessage("Det blev fel")
+            setMessage(validated)
             return
         }
         cards.push(formData)
         localStorage.cards = JSON.stringify(cards)
-        console.log(JSON.parse(localStorage.cards));
         navigate("/")
     }
 
@@ -101,8 +98,4 @@ export default function CardForm({setMessage}) {
             <button>ADD CARD</button>
         </form>
     )
-}
-
-function validateForm(form) {
-    return true
 }
