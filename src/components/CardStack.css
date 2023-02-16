@@ -14,10 +14,13 @@
 }
 .cardstack > section:nth-child(3) {
     translate: 0 -390px;
+    opacity: .95;
 }
 .cardstack > section:nth-child(4) {
     translate: 0 -585px;
+    opacity: .95;
 }
 .cardstack > section:nth-child(5) {
     translate: 0 -780px;
+    opacity: .95;
 }

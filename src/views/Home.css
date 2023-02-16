@@ -42,7 +42,7 @@ a {
     cursor: not-allowed;
 }
 
-.rmButton {
+.button--remove {
     width: fit-content;
     padding: .3rem .5rem;
     font-size: 1rem;

@@ -1,5 +1,4 @@
 import "./CardForm.css"
-import {validateForm} from "../assets/utils.js"
 import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 
@@ -34,9 +33,11 @@ export default function CardForm({setMessage}) {
             setMessage(validated)
             return
         }
+        if(cards.length === 0) { // om det är första kortet, gör det aktivt
+            localStorage.active = "0"
+        }
         cards.push(formData)
         localStorage.cards = JSON.stringify(cards)
-        // if(localStorage.active === "-1") localStorage.active = "0"
         navigate("/")
     }
 
@@ -99,4 +100,32 @@ export default function CardForm({setMessage}) {
             <button>ADD CARD</button>
         </form>
     )
+}
+
+function validateForm(form) {
+    const messages = []
+    const numberFormat = /^\d{16}$/
+    const validThruFormat = /(^0[1-9])|(^1[0-2])\/\d\d$/
+    const ccvFormat = /^\d\d\d$/
+
+    if(!numberFormat.test(form.number)) {
+        messages.push("Card number should be 16 digits")
+    }
+    if(form.name.length > 22 || form.name.length < 2) {
+        messages.push("Name should be 2 to 22 characters")
+    }
+    if(!validThruFormat.test(form.valid)) {
+        messages.push("Valid Thru format is: MM/YY")
+    }
+    if(!ccvFormat.test(form.ccv)) {
+        messages.push("CCV should be 3 digits")
+    }
+    if(form.vendor === "") {
+        messages.push("You must choose a vendor")
+    }
+    if(messages.length > 0) {
+        return messages
+    } else {
+        return true
+    }
 }

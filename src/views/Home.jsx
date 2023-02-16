@@ -18,11 +18,11 @@ export default function Home() {
         JSON.parse(localStorage.active))
     const unActiveCards = cards.filter((card, i) => i !== Number(activeCardIndex))
 
-    function handleClick(nr) {
+    function handleClick(nr) { // sätt klickat kort som aktivt kort
         for(let i = 0; i < cards.length; i++) {
             if(cards[i].number === nr) {
                 localStorage.active = i
-                setActiveCardIndex(localStorage.active) // trigger rerender
+                setActiveCardIndex(localStorage.active) // trigga rerender
                 break
             }
         }
@@ -33,7 +33,7 @@ export default function Home() {
             cards.splice(activeCardIndex,1)
             localStorage.cards = JSON.stringify(cards)
             localStorage.active = "-1"
-            setActiveCardIndex(-1);
+            setActiveCardIndex(-1);  // trigga rerender
         }
     }
 
@@ -47,15 +47,15 @@ export default function Home() {
                  {activeCardIndex >=0 // om inget kort är aktivt är index = -1
                     ? <>
                         <Card data={cards[activeCardIndex]} onClick={()=>{}} />
-                        <button className="button rmButton" onClick={handleRemove}>remove card</button>
+                        <button className="button button--remove" onClick={handleRemove}>remove card</button>
                       </>
                     : <NoActiveCard />
                  }
                  <CardStack cards={unActiveCards} onClick={handleClick}/>
                </>
             }
-            <Link to="/addcard">
-                <button className="button" disabled={cards.length >= 5 && true}>
+            <Link to="/addcard"> 
+                <button className="button" disabled={cards.length >= 5 && true}> 
                     {cards.length < 5
                      ? 'ADD A NEW CARD'
                      : 'MAX 5 CARDS'}
